@@ -11,15 +11,7 @@ namespace HTests
         {
             while (true)
             {
-                foreach (var item in BitConverter.GetBytes(-10))
-                {
-                    Console.WriteLine(item);
-                }
-                Console.WriteLine();
-                foreach (var item in BitConverter.GetBytes(-500))
-                {
-                    Console.WriteLine(item);
-                }
+                Console.WriteLine(a.ToString());
                 Console.ReadKey();
                 Console.WriteLine("---------------");
             }

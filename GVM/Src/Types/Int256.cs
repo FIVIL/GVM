@@ -63,10 +63,10 @@ namespace GVM.Src.Types
                 ,0, 0,0,0
                 ,0, 0,0,0
         };
-        public Int256 MaxValue { get => new Int256 { data = maxByte }; }
-        public Int256 MinValue { get => new Int256 { data = minByte }; }
-        public Int256 Zero { get => new Int256 { data = zeroByte }; }
-        public Int256 One { get => new Int256 { data = oneByte }; }
+        public static Int256 MaxValue { get => new Int256 { data = maxByte }; }
+        public static Int256 MinValue { get => new Int256 { data = minByte }; }
+        public static Int256 Zero { get => new Int256 { data = zeroByte }; }
+        public static Int256 One { get => new Int256 { data = oneByte }; }
         #endregion
 
         #region Construct
@@ -154,7 +154,7 @@ namespace GVM.Src.Types
         {
             data = new byte[32];
             if (b == null) throw new ArgumentNullException();
-            if (b.Length < 32)
+            if (b.Length <= 32)
             {
                 for (int i = 0; i < b.Length; i++)
                 {
@@ -234,7 +234,7 @@ namespace GVM.Src.Types
         public static Int256 Pars(string s)
         {
             var c = BigInteger.Parse(s);
-            if (c.ToByteArray().Length > 31) throw new ArgumentOutOfRangeException();
+            if (c.ToByteArray().Length > 32) throw new ArgumentOutOfRangeException();
             return new BigInteger(c.ToByteArray());
         }
         #endregion
@@ -302,7 +302,6 @@ namespace GVM.Src.Types
         public override string ToString()
         {
             return new BigInteger(data).ToString();
-
         }
 
         public override int GetHashCode()
