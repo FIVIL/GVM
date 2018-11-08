@@ -11,7 +11,7 @@ namespace GVM.Src.Types
     /// it also implements most of the interfaces which .Net datatype normally implements 
     /// and have the same functions
     /// </summary>
-    public struct Int256 /*: IComparable, IComparable<Int256>, IEquatable<Int256>*/
+    public struct Int256 : IComparable, IComparable<Int256>, IEquatable<Int256>
     {
         internal byte[] data;
 
@@ -216,6 +216,16 @@ namespace GVM.Src.Types
         #region double
         public static implicit operator Int256(double b) =>
             new Int256(new BigInteger(b).ToByteArray());
+
+        public static bool operator ==(Int256 int1, Int256 int2)
+        {
+            return int1.Equals(int2);
+        }
+
+        public static bool operator !=(Int256 int1, Int256 int2)
+        {
+            return !(int1 == int2);
+        }
         #endregion
 
         #endregion
@@ -232,6 +242,74 @@ namespace GVM.Src.Types
         #region NonStatics
 
         public byte[] ToByteArray() => data;
+
+        #endregion
+
+        #region Interfaces
+        public int CompareTo(object obj)
+        {
+            if (obj == null)
+            {
+                return 1;
+            }
+            if (obj is Int256)
+            {
+                // Need to use compare because subtraction will wrap
+                // to positive for very large neg numbers, etc.
+                Int256 cp = (Int256)obj;
+                if (data[31] > 127 && cp.data[31] <= 127) return -1;
+                if (data[31] <= 127 && cp.data[31] > 127) return 1;
+                for (int i = 31; i > -1; i--)
+                {
+                    if (data[i] < cp.data[i]) return -1;
+                    if (data[i] > cp.data[i]) return 1;
+                }
+                return 0;
+            }
+            throw new ArgumentException();
+        }
+
+        public int CompareTo(Int256 cp)
+        {
+            if (data[31] > 127 && cp.data[31] <= 127) return -1;
+            if (data[31] <= 127 && cp.data[31] > 127) return 1;
+            for (int i = 31; i > -1; i--)
+            {
+                if (data[i] < cp.data[i]) return -1;
+                if (data[i] > cp.data[i]) return 1;
+            }
+            return 0;
+        }
+
+        public bool Equals(Int256 other)
+        {
+            for (int i = 0; i < 32; i++)
+            {
+                if (!data[i].Equals(other.data[i])) return false;
+            }
+            return true;
+        }
+        #endregion
+
+        #region overrides
+        public override bool Equals(object obj)
+        {
+            if (obj is null) return false;
+            if (obj is Int256) return this.Equals((Int256)obj);
+            throw new ArgumentException();
+        }
+
+        public override string ToString()
+        {
+            return new BigInteger(data).ToString();
+
+        }
+
+        public override int GetHashCode()
+        {
+            return 1768953197 + EqualityComparer<byte[]>.Default.GetHashCode(data);
+        }
+
         #endregion
 
     }

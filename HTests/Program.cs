@@ -11,7 +11,16 @@ namespace HTests
         {
             while (true)
             {
-                var c = new BigInteger();
+                foreach (var item in BitConverter.GetBytes(-10))
+                {
+                    Console.WriteLine(item);
+                }
+                Console.WriteLine();
+                foreach (var item in BitConverter.GetBytes(-500))
+                {
+                    Console.WriteLine(item);
+                }
+                Console.ReadKey();
                 Console.WriteLine("---------------");
             }
         }
