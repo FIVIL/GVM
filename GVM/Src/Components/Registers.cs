@@ -1,0 +1,26 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace GVM.Src.Components
+{
+    public enum RegistersName
+    {
+        PC,
+        AC,
+        SP
+    }
+    public class Registers
+    {
+        private readonly Register[] registers;
+        public Registers()
+        {
+            registers = new Register[Enum.GetNames(typeof(RegistersName)).Length];
+        }
+        public Register this[RegistersName index]
+        {
+            get => registers[(int)index];
+            set => registers[(int)index] = value;
+        }
+    }
+}

@@ -10,13 +10,18 @@ namespace HTests
     {
         static void Main(string[] args)
         {
-            var flags = new Dictionary<int, bool>(4);
-            foreach (var item in flags)
-            {
-                Console.WriteLine(item.Key);
-            }
-            Console.WriteLine(flags.Count);
+
+            get(2);
+            get(new { a = 3 });
+            get(new List<int>());
+            get("hamed");
+            get('a');
+            get(new Program());
             Console.ReadKey();
+        }
+        static void get(object o)
+        {
+            Console.WriteLine(o.GetType());
         }
     }
 }

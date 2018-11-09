@@ -10,4 +10,10 @@
     <None Remove="Src\Types\**" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="GDIC">
+      <HintPath>..\..\GDIC\GDIC\bin\Release\netstandard2.0\GDIC.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>
