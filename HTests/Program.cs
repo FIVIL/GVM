@@ -1,8 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Numerics;
-using GVM.Src;
-using GVM.Src.Types;
+using static System.Console;
 
 namespace HTests
 {
@@ -10,6 +10,13 @@ namespace HTests
     {
         static void Main(string[] args)
         {
+            var flags = new Dictionary<int, bool>(4);
+            foreach (var item in flags)
+            {
+                Console.WriteLine(item.Key);
+            }
+            Console.WriteLine(flags.Count);
+            Console.ReadKey();
         }
     }
 }
