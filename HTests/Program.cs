@@ -1,7 +1,7 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Numerics;
-using GVM.Src;
-using GVM.Src.Types;
+
 
 namespace HTests
 {
@@ -9,12 +9,7 @@ namespace HTests
     {
         static void Main(string[] args)
         {
-            while (true)
-            {
-                Console.WriteLine(a.ToString());
-                Console.ReadKey();
-                Console.WriteLine("---------------");
-            }
+            
         }
     }
 }
