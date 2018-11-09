@@ -1,4 +1,5 @@
 ﻿using GDIC;
+using GVM.Src.Components.BaseComponents;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,14 +9,12 @@ namespace GVM.Src.Components
     public class Stack
     {
         private readonly Register[] data;
-        private readonly int size;
         private readonly ServiceCollection services;
         private int sp { get => services.GetService<Registers>()[RegistersName.SP]; }
         private void Plus() => services.GetService<Registers>()[RegistersName.SP]++;
         private void Minus() => services.GetService<Registers>()[RegistersName.SP]--;
         public Stack(int size, ServiceCollection service)
         {
-            this.size = size;
             data = new Register[size];
             services = service;
         }

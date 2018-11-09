@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
-namespace GVM.Src.Components
+namespace GVM.Src.Components.BaseComponents
 {
     public struct Register
     {
