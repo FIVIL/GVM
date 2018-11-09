@@ -6,8 +6,16 @@ namespace GVM.Src.Components
 {
     public enum RegistersName
     {
-        PC,
-        AC,
+        //Instruction Pointer
+        IP,
+        //Accumulators
+        AX,
+        BX,
+        CX,
+        DX,
+        //Base Pointer
+        BP,
+        //Stack Pointer
         SP
     }
     public class Registers

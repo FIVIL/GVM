@@ -11,17 +11,20 @@ namespace HTests
         static void Main(string[] args)
         {
 
-            get(2);
-            get(new { a = 3 });
-            get(new List<int>());
-            get("hamed");
-            get('a');
-            get(new Program());
+            Stopwatch sp = new Stopwatch();
+            sp.Start();
+            for (int i = 0; i < 2000_000; i++)
+            {
+                BigInteger b = new BigInteger(1);
+                for (int j = 0; j < 32; j++)
+                {
+                    b = b << 1;
+                }
+            }
+            sp.Stop();
+            Console.WriteLine(sp.ElapsedMilliseconds);
             Console.ReadKey();
         }
-        static void get(object o)
-        {
-            Console.WriteLine(o.GetType());
-        }
+
     }
 }
