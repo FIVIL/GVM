@@ -9,4 +9,10 @@
     <ProjectReference Include="..\GVM\GVM.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="GDIC">
+      <HintPath>..\..\GDIC\GDIC\bin\Release\netstandard2.0\GDIC.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>

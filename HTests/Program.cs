@@ -1,4 +1,6 @@
-﻿using System;
+﻿using GDIC;
+using GVM.Src.Components;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Numerics;
@@ -10,19 +12,17 @@ namespace HTests
     {
         static void Main(string[] args)
         {
-
-            Stopwatch sp = new Stopwatch();
-            sp.Start();
-            for (int i = 0; i < 2000_000; i++)
+            var k = new ServiceCollection();
+            var f = new Registers();
+            f[RegistersName.SP] = 0;
+            k.AddSingelton(f);
+            var s = new Stack(GVM.Src.Utilities.Statics.stackSize, k);
+            for (int i = 0; i < GVM.Src.Utilities.Statics.stackSize; i++)
             {
-                BigInteger b = new BigInteger(1);
-                for (int j = 0; j < 32; j++)
-                {
-                    b = b << 1;
-                }
+                Console.WriteLine(k.GetService<Registers>()[RegistersName.SP]);
+                s.Push(1);
             }
-            sp.Stop();
-            Console.WriteLine(sp.ElapsedMilliseconds);
+            Console.WriteLine("a");
             Console.ReadKey();
         }
 
