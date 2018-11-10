@@ -135,11 +135,101 @@ namespace GVM.Src.Components.BaseComponents
         WRIOT,
         //AND ALSO POP
         WRIOP,
+        //LOAD FILE AND PUT IT IN STORAGE AND PUT IT ADDRESS TO IO REG
+        LDF,
+        //SAVE INDICATED FILE FROM STORAGE TO HARDDISC WITH GIVEN NAME
+        STF,
         #endregion
 
-        //STORAGE UNMANGED MEMORY OF .NET TYPES
-        #region STORAGE
+        //STORAGE UNMANGED MEMORY OF .NET TYPES AND VARIABLES GO IN HERE
+        #region Storage
+        ST,
+        LD,
+        #endregion
 
+        #region BlockChain
+        //LOAD VALUE FROM BLOCKCHAIN
+        LDB,
+        //BLOCK TIME STAMP
+        BTIME,
+        //BLOCKHASH
+        BHASH,
+        //GET BLOCK INDEX
+        BINDEX,
+        //DIFFICULTY
+        DIFF,
+        #endregion
+
+        #region Transaction
+        //TRANSACTION HASH
+        TXH,
+        //TX SENDER
+        TXSENDER,
+        //RECIPIENT
+        TXRECIP,
+        //SEND TIME
+        TXTIME,
+        //INPUT VALUE OF TRANSACTION
+        TXIN,
+        //OUTPUT VALUE OF TRANSACTION
+        TXOUT,
+        //TRANSACTION TYPE(FUNCTION CALL OR TRANSFER)
+        TXTYPE,
+        #endregion
+
+        #region SENDER OF THIS TRANSACTION
+        //THE VERIY FIRST SENDER OF TRANSACTION
+        ORIGIN,
+        //MAYBE THE SAME WITH ABOVE, OR MAYBE THE OTHER APP WICH CALL TO THIS
+        CALLER,
+        //THE SUPPLAY SENT WITH THE TRANSACTION
+        SUPPLY,
+        #endregion
+
+        #region Func
+        //FUNCTION CALL
+        CALL,
+        //RET FUNCTION
+        RET,
+        //CALL TO OTHER APP
+        GCALL,
+        //CREATE
+        CREATE,
+        #endregion
+
+        #region Account
+        //GET ACC COUDE
+        ACCODE,
+        //ACC BALANCE
+        ACBALANCE,
+        //ACC NONCE
+        ACNONCE,
+        //TIME STAMP
+        ACTIME,
+        #endregion
+
+        #region Serialization
+        SHA2,
+        SHA3,
+        MD5,
+        //BLACKE2B
+        BE2B,
+        //TWICE
+        SHA2T,
+        SHA3T,
+        MD5T,
+        BE2B2,
+        JSON,
+        BASE64,
+        BASE58CH,
+        //AES
+        ENCAES,
+        DECAES,
+        //ECC
+        ENCECC,
+        DECECC,
+        //CHECK SIGNTURE CORRECT
+        CHECKSIG,
         #endregion
     }
     public class OpCode

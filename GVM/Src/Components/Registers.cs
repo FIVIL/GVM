@@ -16,7 +16,7 @@ namespace GVM.Src.Components
         CX,
         //STORAGE
         DX,
-        //MEMORY(blockchain)
+        //BC(blockchain)
         EX,
         //NETWORK
         FX,
