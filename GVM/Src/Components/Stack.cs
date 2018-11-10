@@ -21,6 +21,7 @@ namespace GVM.Src.Components
         public Register Peek() => data[sp];
         public bool Push(Register r)
         {
+            if (sp < 0) throw new ArgumentException();
             Plus();
             if (sp >= Utilities.Statics.stackSize) return false;
             data[sp] = r;
@@ -28,9 +29,9 @@ namespace GVM.Src.Components
         }
         public bool Pop(out Register r)
         {
-            if (sp == 0)
+            if (sp <= 0)
             {
-                r = null;
+                r = new Register();
                 return false;
             }
             r = data[sp];

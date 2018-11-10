@@ -7,7 +7,9 @@ namespace GVM.Src.Components.BaseComponents
     public struct Register
     {
         byte[] value;
-        public static implicit operator byte[] (Register r) => r.value;
+
+        public static explicit operator byte[] (Register r) => r.value;
+
         public static implicit operator Register(byte[] r)
             => r.Length != Utilities.Statics.bufferSize
             ? throw new ArgumentOutOfRangeException()
@@ -17,6 +19,7 @@ namespace GVM.Src.Components.BaseComponents
             => BitConverter.ToInt32(new byte[]
                 {r.value[0],r.value[1]
                 ,r.value[2],r.value[3]}, 0);
+
         public static implicit operator Register(int r)
         {
             var s = new byte[Utilities.Statics.bufferSize];

@@ -18,6 +18,17 @@ namespace GVM.Src.Components
             data = new Register[iSize];
             services = service;
         }
-
+        public bool Fetch(out Instruction ins)
+        {
+            if (ip >= Utilities.Statics.instructionSize)
+            {
+                ins = new Instruction();
+                return false;
+            }
+            if (ip < 0) throw new ArgumentException();
+            ins = data[ip];
+            Plus();
+            return true;
+        }
     }
 }
