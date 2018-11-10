@@ -18,6 +18,16 @@ namespace GVM.Src.Components
             data = new Register[iSize];
             services = service;
         }
+        public bool Utilize(byte[][] codes)
+        {
+            if (codes.Length > Utilities.Statics.instructionSize) return false;
+            for (int i = 0; i < codes.Length; i++)
+            {
+                if (codes[i].Length > Utilities.Statics.bufferSize) return false;
+                data[i] = codes[i];
+            }
+            return true;
+        }
         public bool Fetch(out Instruction ins)
         {
             if (ip >= Utilities.Statics.instructionSize)

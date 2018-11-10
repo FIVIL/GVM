@@ -9,7 +9,8 @@ namespace GVM.Src.Components
         Sign,
         Zero,
         Carry,
-        Overflow
+        Overflow,
+        Accumulator
     }
     public class Flags
     {

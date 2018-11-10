@@ -12,8 +12,14 @@ namespace GVM.Src.Components
         //Accumulators
         AX,
         BX,
+        //IO
         CX,
+        //STORAGE
         DX,
+        //MEMORY(blockchain)
+        EX,
+        //NETWORK
+        FX,
         //Base Pointer
         BP,
         //Stack Pointer
