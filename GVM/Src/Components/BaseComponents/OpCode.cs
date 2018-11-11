@@ -24,40 +24,41 @@ namespace GVM.Src.Components.BaseComponents
         SLEEP,
         MV,
         NOP,
-        EXCH,
         #endregion
 
         #region Arithmetic
+        INC,
+        DEC,
         ADD,
         SADD,
         MUL,
         SMUL,
         SUB,
         SSUB,
+        //2 / 1 becuase 2 is bigger
         DIV,
         SDIV,
-        //MODULU
+        //MODULU 2 % 1
         MOD,
         SMOD,
-        //EXPONENTIAL
+        //EXPONENTIAL pow(2,1)
         EXP,
         SEXP,
+        //log 10
         LOG,
         ABS,
         #endregion
 
         #region Logical
-        INC,
-        DEC,
         AND,
         OR,
         XOR,
         NOT,
         //TWO'S COMPLEMENT MAKE IT NEGETIVE
         NEG,
-        //SHIFT LEFT
+        //SHIFT LEFT op2 shifts op1 (op2<<op1)
         SHL,
-        //SHIFT RIGHT
+        //SHIFT RIGHT op2 shifts op1(op2>>op1)
         SHR,
         #endregion
 
@@ -68,6 +69,11 @@ namespace GVM.Src.Components.BaseComponents
         //LESS THAN
         LT,
         SLT,
+        //or equel
+        GTE,
+        SGTE,
+        LTE,
+        SLTE,
         //IF EQUAL TRUE ELSE FALSE
         CP,
         #endregion
@@ -108,7 +114,7 @@ namespace GVM.Src.Components.BaseComponents
         //LESS
         JIFLT,
         //SIGNED
-        JIFSL,
+        JIFSLT,
         //OR EQUAL
         JIFGTE,
         JIFSGTE,
@@ -122,6 +128,7 @@ namespace GVM.Src.Components.BaseComponents
         PUSH,
         POP,
         DUP,
+        EXCH,
         #endregion
 
         #region IO

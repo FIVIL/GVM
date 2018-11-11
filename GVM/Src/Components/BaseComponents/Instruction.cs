@@ -54,13 +54,17 @@ namespace GVM.Src.Components.BaseComponents
         public Operand FirstOperand
         {
             get => OpCount > 1
-                ? new Operand(((byte[])data).Skip(3).Take(8).ToArray())
+                ? (new Operand(((byte[])data).Skip(3).Take(2).ToArray())).Type == OpType.Immediate
+                    ? new Operand(((byte[])data).Skip(3).Take(15).ToArray())
+                    : new Operand(((byte[])data).Skip(3).Take(8).ToArray())
                 : new Operand(((byte[])data).Skip(3).ToArray());
         }
         public Operand SeccondOperand
         {
             get => OpCount > 1
-                ? new Operand(((byte[])data).Skip(8).ToArray())
+                ? (new Operand(((byte[])data).Skip(3).Take(2).ToArray())).Type == OpType.Immediate
+                    ? new Operand(((byte[])data).Skip(18).ToArray())
+                    : new Operand(((byte[])data).Skip(11).Take(8).ToArray())
                 : throw new ArgumentNullException();
         }
     }
