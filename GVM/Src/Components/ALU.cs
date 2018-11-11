@@ -418,7 +418,39 @@ namespace GVM.Src.Components
             //TO DO
             #endregion
 
+            #region Storage
+            //TODO
+            #endregion
 
+            #region BlockChain
+            //TODO
+            #endregion
+
+            #region Transaction
+            //TODO
+            #endregion
+
+            #region SENDER OF THIS TRANSACTION
+            //TODO
+            #endregion
+
+            #region Func
+            actions.Add(OpCodeName.CALL, (c, o1, o2) =>
+            {
+                var ReturnAddress = services.GetService<Registers>()[RegistersName.IP];
+                ReturnAddress++;
+                if (!services.GetService<Stack>().Push(ReturnAddress)) throw new ArgumentNullException();
+                services.GetService<Registers>()[RegistersName.IP] = GetSource(o1);
+            });
+
+            actions.Add(OpCodeName.RET, (c, o1, o2) =>
+            {
+                if (!services.GetService<Stack>().Pop(out var ReturnAddress)) throw new ArgumentNullException();
+                services.GetService<Registers>()[RegistersName.IP] = GetSource(new Operand((byte[])ReturnAddress));
+            });
+
+            //TODO Globals
+            #endregion
         }
         private void Revert()
         {
