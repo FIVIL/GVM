@@ -225,7 +225,7 @@ namespace GVM.Src.Components.BaseComponents
         SHA2T,
         SHA3T,
         MD5T,
-        BE2B2,
+        BE2BT,
         JSON,
         BASE64,
         BASE58CH,
@@ -237,6 +237,10 @@ namespace GVM.Src.Components.BaseComponents
         DECECC,
         //CHECK SIGNTURE CORRECT
         CHECKSIG,
+        #endregion
+
+        #region Transfer
+
         #endregion
     }
     public class OpCode

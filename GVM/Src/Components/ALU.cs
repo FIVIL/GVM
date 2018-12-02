@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading;
 
@@ -450,6 +451,126 @@ namespace GVM.Src.Components
             });
 
             //TODO Globals
+            #endregion
+
+            #region Account
+
+            //TOOD
+
+            #endregion
+
+            #region Serialization
+            actions.Add(OpCodeName.SHA2, (c, o1, o2) =>
+            {
+                if (c != 0 || c != 1) throw new ArgumentException();
+                if (c == 0)
+                {
+                    if (!services.GetService<Stack>().Pop(out var op1)) throw new ArgumentException();
+                    using (var sha = SHA256.Create())
+                    {
+                        var p = sha.ComputeHash(((byte[])GetSource(new Operand((byte[])op1))));
+                        if (!services.GetService<Stack>().Push(p)) throw new ArgumentException();
+                    }
+
+                }
+                else
+                {
+                    using (var sha = SHA256.Create())
+                    {
+                        var p = sha.ComputeHash(((byte[])GetSource(o1)));
+                        services.GetService<Registers>()[RegistersName.AX] = p;
+                    }
+                }
+            });
+            actions.Add(OpCodeName.SHA3, (c, o1, o2) =>
+            {
+                throw new ArgumentException();
+            });
+            actions.Add(OpCodeName.MD5, (c, o1, o2) =>
+            {
+                if (c != 0 || c != 1) throw new ArgumentException();
+                if (c == 0)
+                {
+                    if (!services.GetService<Stack>().Pop(out var op1)) throw new ArgumentException();
+                    using (var sha = MD5.Create())
+                    {
+                        var p = sha.ComputeHash(((byte[])GetSource(new Operand((byte[])op1))));
+                        if (!services.GetService<Stack>().Push(p)) throw new ArgumentException();
+                    }
+
+                }
+                else
+                {
+                    using (var sha = MD5.Create())
+                    {
+                        var p = sha.ComputeHash(((byte[])GetSource(o1)));
+                        services.GetService<Registers>()[RegistersName.AX] = p;
+                    }
+                }
+            });
+            actions.Add(OpCodeName.BE2B, (c, o1, o2) =>
+            {
+                throw new ArgumentException();
+            });
+
+            actions.Add(OpCodeName.SHA2T, (c, o1, o2) =>
+            {
+                if (c != 0 || c != 1) throw new ArgumentException();
+                if (c == 0)
+                {
+                    if (!services.GetService<Stack>().Pop(out var op1)) throw new ArgumentException();
+                    using (var sha = SHA256.Create())
+                    {
+                        var p = sha.ComputeHash(((byte[])GetSource(new Operand((byte[])op1))));
+                        p = sha.ComputeHash(p);
+                        if (!services.GetService<Stack>().Push(p)) throw new ArgumentException();
+                    }
+
+                }
+                else
+                {
+                    using (var sha = SHA256.Create())
+                    {
+                        var p = sha.ComputeHash(((byte[])GetSource(o1)));
+                        p = sha.ComputeHash(p);
+                        services.GetService<Registers>()[RegistersName.AX] = p;
+                    }
+                }
+            });
+            actions.Add(OpCodeName.SHA3T, (c, o1, o2) =>
+            {
+                throw new ArgumentException();
+            });
+            actions.Add(OpCodeName.MD5T, (c, o1, o2) =>
+            {
+                if (c != 0 || c != 1) throw new ArgumentException();
+                if (c == 0)
+                {
+                    if (!services.GetService<Stack>().Pop(out var op1)) throw new ArgumentException();
+                    using (var sha = MD5.Create())
+                    {
+                        var p = sha.ComputeHash(((byte[])GetSource(new Operand((byte[])op1))));
+                        p = sha.ComputeHash(p);
+                        if (!services.GetService<Stack>().Push(p)) throw new ArgumentException();
+                    }
+
+                }
+                else
+                {
+                    using (var sha = MD5.Create())
+                    {
+                        var p = sha.ComputeHash(((byte[])GetSource(o1)));
+                        p = sha.ComputeHash(p);
+                        services.GetService<Registers>()[RegistersName.AX] = p;
+                    }
+                }
+            });
+            actions.Add(OpCodeName.BE2BT, (c, o1, o2) =>
+            {
+                throw new ArgumentException();
+            });
+
+            
             #endregion
         }
         private void Revert()
